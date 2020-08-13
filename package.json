@@ -1,0 +1,25 @@
+{
+  "name": "stories-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "This is my view of the five latest stories",
+  "license": "MIT",
+  "scripts": {
+    "grab": "node app/server/graber/index.js",
+    "client-install": "npm install --prefix app/client",
+    "start": "node app/server/server.js",
+    "server": "nodemon app/server/server.js",
+    "client": "npm run dev --prefix app/client",
+    "dev": "concurrently --names \"grab, server,client\" \"npm run grab\" \"npm run start\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --dev --prefix app/client && npm run build --prefix app/client"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
